@@ -1,7 +1,7 @@
 <?php
 
-class {{className}} extends Eloquent {
-	protected $guarded = array();
+class {{className}} extends \Eloquent {
 
-	public static $rules = array();
+    protected $table = '{{snake_case(className)}}';
+
 }

@@ -1,6 +1,6 @@
 <?php
 
-class {{className}} extends BaseController {
+class {{className}} extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +9,7 @@ class {{className}} extends BaseController {
 	 */
 	public function index()
 	{
-		//
+        return Response::json(array('error' => 'not_implemented'), 501);
 	}
 
 	/**
@@ -19,7 +19,7 @@ class {{className}} extends BaseController {
 	 */
 	public function create()
 	{
-		//
+        return Response::json(array('error' => 'not_implemented'), 501);
 	}
 
 	/**
@@ -29,7 +29,7 @@ class {{className}} extends BaseController {
 	 */
 	public function store()
 	{
-		//
+        return Response::json(array('error' => 'not_implemented'), 501);
 	}
 
 	/**
@@ -40,7 +40,7 @@ class {{className}} extends BaseController {
 	 */
 	public function show($id)
 	{
-		//
+        return Response::json(array('error' => 'not_implemented'), 501);
 	}
 
 	/**
@@ -51,7 +51,7 @@ class {{className}} extends BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+        return Response::json(array('error' => 'not_implemented'), 501);
 	}
 
 	/**
@@ -62,7 +62,7 @@ class {{className}} extends BaseController {
 	 */
 	public function update($id)
 	{
-		//
+        return Response::json(array('error' => 'not_implemented'), 501);
 	}
 
 	/**
@@ -73,7 +73,7 @@ class {{className}} extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+        return Response::json(array('error' => 'not_implemented'), 501);
 	}
 
 }

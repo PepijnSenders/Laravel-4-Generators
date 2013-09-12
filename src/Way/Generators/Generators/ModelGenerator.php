@@ -20,7 +20,10 @@ class ModelGenerator extends Generator {
             $this->template = $this->getScaffoldedModel($className);
         }
 
-        return str_replace('{{className}}', $className, $this->template);
+        $template = str_replace('{{className}}', $className, $this->template);
+        $template = str_replace('{{snake_case(className)}}', str_plural(snake_case($className)), $template);
+
+        return $template;
     }
 
     /**
