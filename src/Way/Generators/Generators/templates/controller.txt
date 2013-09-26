@@ -1,6 +1,6 @@
 <?php
 
-class {{className}} extends \BaseController {
+class {{className}} extends BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +9,14 @@ class {{className}} extends \BaseController {
 	 */
 	public function index()
 	{
-        return Response::json(array('error' => 'not_implemented'), 501);
+        ${{str_plural(camel_case(className))}} = {{studly_case(clasName)}}::all();
+
+        if (empty({{str_plural(camel_case(className))}}))
+        {
+            return Response::json(array('error' => '{{str_plural(camel_case(className))}}_not_found'), 404);
+        }
+
+        return Response::json(${{str_plural(camel_case(className))}}, 200);
 	}
 
 	/**
@@ -40,7 +47,14 @@ class {{className}} extends \BaseController {
 	 */
 	public function show($id)
 	{
-        return Response::json(array('error' => 'not_implemented'), 501);
+        ${{camel_case(className)}} = {{studly_case(clasName)}}::where('id', $id)->first();
+
+        if (empty(${{camel_case(className)}}))
+        {
+            return Response::json(array('error' => '{{camel_case(className)}}_not_found'));
+        }
+
+        return Response::json(${{camel_case(className)}}, 200);
 	}
 
 	/**
@@ -73,7 +87,16 @@ class {{className}} extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-        return Response::json(array('error' => 'not_implemented'), 501);
+        ${{camel_case(className)}} = {{studly_case(clasName)}}::where('id', $id)->first();
+
+        if (empty(${{camel_case(className)}}))
+        {
+            return Response::json(array('error' => '{{camel_case(className)}}_not_found'), 404);
+        }
+
+        ${{camel_case(className)}}->delete();
+
+        return Response::json(array('success'), 200);
 	}
 
 }
