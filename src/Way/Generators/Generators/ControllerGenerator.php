@@ -24,6 +24,9 @@ class ControllerGenerator extends Generator {
         }
 
         return str_replace('{{className}}', $className, $this->template);
+        return str_replace('{{camel_case(className)}}', camel_case($className), $this->template);
+        return str_replace('{{studly_case(className)}}', studly_case($className), $this->template);
+        return str_replace('{{str_plural(camel_case(className))}}', str_plural(camel_case($className)), $this->template);
     }
 
     /**
