@@ -11,7 +11,7 @@ class {{className}} extends BaseController {
 	{
         ${{str_plural(camel_case(className))}} = {{studly_case(clasName)}}::all();
 
-        if (empty({{str_plural(camel_case(className))}}))
+        if (empty(${{str_plural(camel_case(className))}}))
         {
             return Response::json(array('error' => '{{str_plural(camel_case(className))}}_not_found'), 404);
         }
