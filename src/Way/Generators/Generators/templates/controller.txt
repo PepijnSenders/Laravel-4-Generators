@@ -3,139 +3,139 @@
 class {{className}} extends BaseController {
 
     /**
-     * {{studly_case(className)}} Repository
+     * {{studly_case(class)}} Repository
      *
-     * @var {{studly_case(className)}}
+     * @var {{studly_case(class)}}
      */
-    protected ${{camel_case(className)}};
+    protected ${{camel_case(class)}};
 
-    public function __construct({{studly_case(className)}} ${{camel_case(className)}})
+    public function __construct({{studly_case(class)}} ${{camel_case(class)}})
     {
-        $this->{{camel_case(className)}} = ${{camel_case(className)}};
+        $this->{{camel_case(class)}} = ${{camel_case(class)}};
     }
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-        ${{str_plural(camel_case(className))}} = {{studly_case(clasName)}}::all();
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        ${{str_plural(camel_case(class))}} = {{studly_case(class)}}::all();
 
-        if (empty(${{str_plural(camel_case(className))}}))
+        if (empty(${{str_plural(camel_case(class))}}))
         {
-            return Response::json(array('error' => '{{str_plural(snake_case(className))}}_not_found'), 404);
+            return Response::json(array('error' => '{{str_plural(snake_case(class))}}_not_found'), 404);
         }
 
-        return Response::json(${{str_plural(camel_case(className))}}, 200);
-	}
+        return Response::json(${{str_plural(camel_case(class))}}, 200);
+    }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create()
+    {
         return Response::json(array('error' => 'not_implemented'), 501);
-	}
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function store()
+    {
         $input = Input::all();
-        $validation = Validator::make($input, {{studly_case(className)}}::$rules);
+        $validation = Validator::make($input, {{studly_case(class)}}::$rules);
 
         if ($validation->passes())
         {
-            ${{camel_case(className)}} = $this->{{camel_case(className)}}->create($input);
+            ${{camel_case(class)}} = $this->{{camel_case(class)}}->create($input);
 
-            return Response::json(${{camel_case(className)}}, 201);
+            return Response::json(${{camel_case(class)}}, 201);
         }
 
         return Response::json($validation, 400);
-	}
+    }
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-        ${{camel_case(className)}} = {{studly_case(clasName)}}::where('id', $id)->first();
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        ${{camel_case(class)}} = {{studly_case(class)}}::where('id', $id)->first();
 
-        if (empty(${{camel_case(className)}}))
+        if (empty(${{camel_case(class)}}))
         {
-            return Response::json(array('error' => '{{snake_case(className)}}_not_found'), 404);
+            return Response::json(array('error' => '{{snake_case(class)}}_not_found'), 404);
         }
 
-        return Response::json(${{camel_case(className)}}, 200);
-	}
+        return Response::json(${{camel_case(class)}}, 200);
+    }
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function edit($id)
+    {
         return Response::json(array('error' => 'not_implemented'), 501);
-	}
+    }
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function update($id)
+    {
         $input = array_except(Input::all(), '_method');
-        $validation = Validator::make($input, {{studly_case(className)}}::$rules);
+        $validation = Validator::make($input, {{studly_case(class)}}::$rules);
 
         if ($validation->passes())
         {
-            ${{camel_case(className)}} = $this->{{camel_case(className)}}->find($id);
+            ${{camel_case(class)}} = $this->{{camel_case(class)}}->find($id);
 
-            if (empty(${{camel_case(className)}}))
+            if (empty(${{camel_case(class)}}))
             {
-                return Response::json(array('error' => '{{snake_case(className)}}_not_found'), 404);
+                return Response::json(array('error' => '{{snake_case(class)}}_not_found'), 404);
             }
 
-            ${{camel_case(className)}}->update($input);
+            ${{camel_case(class)}}->update($input);
 
-            return Response::json(${{camel_case(className)}}, 200);
+            return Response::json(${{camel_case(class)}}, 200);
         }
 
         return Response::json($validation, 400);
-	}
+    }
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-        ${{camel_case(className)}} = {{studly_case(clasName)}}::where('id', $id)->first();
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        ${{camel_case(class)}} = {{studly_case(class)}}::where('id', $id)->first();
 
-        if (empty(${{camel_case(className)}}))
+        if (empty(${{camel_case(class)}}))
         {
-            return Response::json(array('error' => '{{snake_case(className)}}_not_found'), 404);
+            return Response::json(array('error' => '{{snake_case(class)}}_not_found'), 404);
         }
 
-        ${{camel_case(className)}}->delete();
+        ${{camel_case(class)}}->delete();
 
         return Response::json(array('success'), 200);
-	}
+    }
 
 }

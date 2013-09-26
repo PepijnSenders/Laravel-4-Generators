@@ -23,10 +23,14 @@ class ControllerGenerator extends Generator {
             $this->template = $this->getScaffoldedController($template, $className);
         }
 
+        $class = str_replace('Controller', '', $className);
+
         $this->template = str_replace('{{className}}', $className, $this->template);
-        $this->template = str_replace('{{camel_case(className)}}', camel_case($className), $this->template);
-        $this->template = str_replace('{{studly_case(className)}}', studly_case($className), $this->template);
-        return str_replace('{{str_plural(camel_case(className))}}', str_plural(camel_case($className)), $this->template);
+        $this->template = str_replace('{{camel_case(class)}}', camel_case($class), $this->template);
+        $this->template = str_replace('{{studly_case(class)}}', studly_case($class), $this->template);
+        $this->template = str_replace('{{snake_case(class)}}', snake_case($class), $this->template);
+        $this->template = str_replace('{{str_plural(snake_case(class))}}', str_plural(snake_case($class)), $this->template);
+        return str_replace('{{str_plural(camel_case(class))}}', str_plural(camel_case($class)), $this->template);
     }
 
     /**
