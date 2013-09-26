@@ -1,6 +1,6 @@
 <?php
 
-class {{className}} extends \Seeder {
+class {{className}} extends Seeder {
 
 	public function run()
 	{

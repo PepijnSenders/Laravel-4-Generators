@@ -1,6 +1,6 @@
 <?php
 
-class {{className}} extends \Eloquent {
+class {{className}} extends Eloquent {
 
     protected $table = '{{snake_case(className)}}';
 

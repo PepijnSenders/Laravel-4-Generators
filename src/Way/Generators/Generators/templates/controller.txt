@@ -2,6 +2,18 @@
 
 class {{className}} extends BaseController {
 
+    /**
+     * {{studly_case(className)}} Repository
+     *
+     * @var {{studly_case(className)}}
+     */
+    protected ${{camel_case(className)}};
+
+    public function __construct({{studly_case(className)}} ${{camel_case(className)}})
+    {
+        $this->{{camel_case(className)}} = ${{camel_case(className)}};
+    }
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -13,7 +25,7 @@ class {{className}} extends BaseController {
 
         if (empty(${{str_plural(camel_case(className))}}))
         {
-            return Response::json(array('error' => '{{str_plural(camel_case(className))}}_not_found'), 404);
+            return Response::json(array('error' => '{{str_plural(snake_case(className))}}_not_found'), 404);
         }
 
         return Response::json(${{str_plural(camel_case(className))}}, 200);
@@ -36,7 +48,17 @@ class {{className}} extends BaseController {
 	 */
 	public function store()
 	{
-        return Response::json(array('error' => 'not_implemented'), 501);
+        $input = Input::all();
+        $validation = Validator::make($input, {{studly_case(className)}}::$rules);
+
+        if ($validation->passes())
+        {
+            ${{camel_case(className)}} = $this->{{camel_case(className)}}->create($input);
+
+            return Response::json(${{camel_case(className)}}, 201);
+        }
+
+        return Response::json($validation, 400);
 	}
 
 	/**
@@ -51,7 +73,7 @@ class {{className}} extends BaseController {
 
         if (empty(${{camel_case(className)}}))
         {
-            return Response::json(array('error' => '{{camel_case(className)}}_not_found'));
+            return Response::json(array('error' => '{{snake_case(className)}}_not_found'), 404);
         }
 
         return Response::json(${{camel_case(className)}}, 200);
@@ -76,7 +98,24 @@ class {{className}} extends BaseController {
 	 */
 	public function update($id)
 	{
-        return Response::json(array('error' => 'not_implemented'), 501);
+        $input = array_except(Input::all(), '_method');
+        $validation = Validator::make($input, {{studly_case(className)}}::$rules);
+
+        if ($validation->passes())
+        {
+            ${{camel_case(className)}} = $this->{{camel_case(className)}}->find($id);
+
+            if (empty(${{camel_case(className)}}))
+            {
+                return Response::json(array('error' => '{{snake_case(className)}}_not_found'), 404);
+            }
+
+            ${{camel_case(className)}}->update($input);
+
+            return Response::json(${{camel_case(className)}}, 200);
+        }
+
+        return Response::json($validation, 400);
 	}
 
 	/**
@@ -91,7 +130,7 @@ class {{className}} extends BaseController {
 
         if (empty(${{camel_case(className)}}))
         {
-            return Response::json(array('error' => '{{camel_case(className)}}_not_found'), 404);
+            return Response::json(array('error' => '{{snake_case(className)}}_not_found'), 404);
         }
 
         ${{camel_case(className)}}->delete();
